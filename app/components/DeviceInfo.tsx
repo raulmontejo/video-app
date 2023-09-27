@@ -12,7 +12,7 @@ interface DeviceInfo {
   settings: MediaTrackSettings;
 }
 
-export default function DeviceConstraints({ deviceId }: Props) {
+export default function DeviceInfo({ deviceId }: Props) {
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
 
   useEffect(() => {

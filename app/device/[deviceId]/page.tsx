@@ -1,9 +1,9 @@
-import DeviceConstraints from '@/app/components/DeviceConstraints';
+import DeviceInfo from '@/app/components/DeviceInfo';
 
 export default function DevicePage({ params }: { params: { deviceId: string } }) {
   const { deviceId } = params;
 
-  // Make sure we have a deviceId before rendering the DeviceConstraints component
+  // Make sure we have a deviceId before rendering the DeviceInfo component
   if (!deviceId) {
     return <div>Loading...</div>;
   }
@@ -11,7 +11,7 @@ export default function DevicePage({ params }: { params: { deviceId: string } })
   return (
   <main className="m-4">
     <h1 className="mb-4 text-4xl">Device Info</h1>
-    <DeviceConstraints deviceId={deviceId as string} />
+    <DeviceInfo deviceId={deviceId as string} />
   </main>
   );
 }
