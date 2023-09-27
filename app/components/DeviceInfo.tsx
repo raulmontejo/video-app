@@ -15,6 +15,7 @@ interface DeviceInfo {
 export default function DeviceInfo({ deviceId }: Props) {
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo | null>(null);
   const [supportedConstraints, setSupportedConstraints] = useState<MediaTrackSupportedConstraints | null>(null);
+  const [deviceCapabilities, setDeviceCapabilities] = useState<MediaTrackCapabilities | null>(null);
 
   useEffect(() => {
     // Request a media stream from the device
@@ -33,13 +34,16 @@ export default function DeviceInfo({ deviceId }: Props) {
         // Get available constraints for the device
         const constraints = navigator.mediaDevices.getSupportedConstraints();
         setSupportedConstraints(constraints);
+        // Get capabilities of the device
+        const capabilities = videoTrack.getCapabilities();
+        setDeviceCapabilities(capabilities);
       })
       .catch(error => {
         console.error('Error getting media stream:', error);
       });
   }, [deviceId]);
 
-  if (!deviceInfo || !supportedConstraints) {
+  if (!deviceInfo || !supportedConstraints || !deviceCapabilities) {
     return <div>Loading...</div>;
   }
 
@@ -68,6 +72,18 @@ export default function DeviceInfo({ deviceId }: Props) {
         </dl>
       </article>
       <article className="my-4 p-4 rounded bg-slate-200 text-slate-800">
+        <h2 className="my-4 text-2xl font-bold">Device Capabilities</h2>
+        <hr className="border border-slate-800 my-4" />
+        <dl className="text-xl">
+          {Object.entries(deviceCapabilities).map(([key, value]) => (
+            <div key={key} className="flex py-1">
+              <dt className="w-80 mb-2"><strong className="mr-2">{key}:</strong></dt>
+              <dd><span>{JSON.stringify(value)}</span></dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+      <article className="my-4 p-4 rounded bg-slate-200 text-slate-800">
         <h2 className="my-4 text-2xl font-bold">Browser Supported Constraints</h2>
         <hr className="border border-slate-800 my-4" />
         <ul className="columns-2 text-xl">
@@ -81,3 +97,4 @@ export default function DeviceInfo({ deviceId }: Props) {
     </React.Fragment>
   );
 }
+
