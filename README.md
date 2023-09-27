@@ -47,7 +47,14 @@ Run a local proxy server to direct https traffic to your nextJS server
 npx local-ssl-proxy --key localhost-key.pem --cert localhost.pem --source 3001 --target 3000
 ```
 
-[Follow these instructions](https://dev.to/paytoncodes/how-to-view-localhost-on-your-phone-13ij#step-two-get-your-local-ip-address) to get your local IP address.
+Get your local IP address.
+
+Tip: On POSIX systems:
+
+```
+ipconfig getifaddr en0
+# try en1 if empty response
+```
 
 Visit the appropriate address in your phone's browser.
 
