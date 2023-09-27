@@ -49,12 +49,12 @@ export default function DeviceInfo({ deviceId }: Props) {
 
   return (
     <React.Fragment>
-      <dl className="p-4 rounded bg-slate-200 text-slate-800 text-xl">
-        <div className="flex py-1">
+      <dl className="p-4 rounded bg-slate-200 text-slate-800 sm:text-xl">
+        <div className="sm:flex py-1">
           <dt className="w-80"><strong>Label:</strong></dt>
           <dd>{deviceInfo.label}</dd>
         </div>
-        <div className="flex py-1">
+        <div className="sm:flex py-1">
           <dt className="w-80"><strong>ID:</strong></dt>
           <dd>{deviceInfo.id}</dd>
         </div>
@@ -62,11 +62,11 @@ export default function DeviceInfo({ deviceId }: Props) {
       <article className="my-4 p-4 rounded bg-slate-200 text-slate-800">
         <h2 className="my-4 text-2xl font-bold">MediaTrackSettings</h2>
         <hr className="border border-slate-800 my-4" />
-        <dl className="text-xl">
+        <dl className="sm:text-xl">
           {Object.entries(deviceInfo.settings).map(([key, value]) => (
-            <div key={key} className="flex py-1 font-mono">
+            <div key={key} className="sm:flex py-1 font-mono">
               <dt className="w-80 mb-2"><strong className="mr-2">{key}:</strong></dt>
-              <dd><span>{JSON.stringify(value)}</span></dd>
+              <dd className="break-all">{JSON.stringify(value)}</dd>
             </div>
           ))}
         </dl>
@@ -74,11 +74,11 @@ export default function DeviceInfo({ deviceId }: Props) {
       <article className="my-4 p-4 rounded bg-slate-200 text-slate-800">
         <h2 className="my-4 text-2xl font-bold">Device Capabilities</h2>
         <hr className="border border-slate-800 my-4" />
-        <dl className="text-xl">
+        <dl className="sm:text-xl">
           {Object.entries(deviceCapabilities).map(([key, value]) => (
-            <div key={key} className="flex py-1 font-mono">
+            <div key={key} className="sm:flex py-1 font-mono">
               <dt className="w-80 mb-2"><strong className="mr-2">{key}:</strong></dt>
-              <dd><span>{JSON.stringify(value)}</span></dd>
+              <dd className="break-all">{JSON.stringify(value)}</dd>
             </div>
           ))}
         </dl>
@@ -86,9 +86,9 @@ export default function DeviceInfo({ deviceId }: Props) {
       <article className="my-4 p-4 rounded bg-slate-200 text-slate-800">
         <h2 className="my-4 text-2xl font-bold">Browser Supported Constraints</h2>
         <hr className="border border-slate-800 my-4" />
-        <ul className="columns-2 text-xl">
+        <ul className="sm:columns-2 sm:text-xl">
           {Object.keys(supportedConstraints).map((key) => (
-            <li key={key} className="flex py-1">
+            <li key={key} className="sm:flex py-1">
               <span className="font-mono">{key}</span>
             </li>
           ))}
