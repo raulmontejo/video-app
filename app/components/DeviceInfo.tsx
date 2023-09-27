@@ -64,7 +64,7 @@ export default function DeviceInfo({ deviceId }: Props) {
         <hr className="border border-slate-800 my-4" />
         <dl className="text-xl">
           {Object.entries(deviceInfo.settings).map(([key, value]) => (
-            <div key={key} className="flex py-1">
+            <div key={key} className="flex py-1 font-mono">
               <dt className="w-80 mb-2"><strong className="mr-2">{key}:</strong></dt>
               <dd><span>{JSON.stringify(value)}</span></dd>
             </div>
@@ -76,7 +76,7 @@ export default function DeviceInfo({ deviceId }: Props) {
         <hr className="border border-slate-800 my-4" />
         <dl className="text-xl">
           {Object.entries(deviceCapabilities).map(([key, value]) => (
-            <div key={key} className="flex py-1">
+            <div key={key} className="flex py-1 font-mono">
               <dt className="w-80 mb-2"><strong className="mr-2">{key}:</strong></dt>
               <dd><span>{JSON.stringify(value)}</span></dd>
             </div>
@@ -89,7 +89,7 @@ export default function DeviceInfo({ deviceId }: Props) {
         <ul className="columns-2 text-xl">
           {Object.keys(supportedConstraints).map((key) => (
             <li key={key} className="flex py-1">
-              <span>{key}</span>
+              <span className="font-mono">{key}</span>
             </li>
           ))}
         </ul>
