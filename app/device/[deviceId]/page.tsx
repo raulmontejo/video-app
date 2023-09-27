@@ -8,5 +8,10 @@ export default function DevicePage({ params }: { params: { deviceId: string } })
     return <div>Loading...</div>;
   }
 
-  return <DeviceConstraints deviceId={deviceId as string} />;
+  return (
+  <main className="m-4">
+    <h1 className="mb-4 text-4xl">Device Info</h1>
+    <DeviceConstraints deviceId={deviceId as string} />
+  </main>
+  );
 }

@@ -40,20 +40,29 @@ export default function DeviceConstraints({ deviceId }: Props) {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="mb-4 text-2xl">Device Info:</h1>
-      <p className="text-xl"><strong>Label:</strong> {deviceInfo.label}</p>
-      <p className="text-xl"><strong>ID:</strong> {deviceInfo.id}</p>
-      <hr className="my-4" />
-      <h2 className="my-4 text-2xl">Device Constraints:</h2>
-      <ul className='text-xl'>
-        {Object.entries(deviceInfo.constraints).map(([key, value]) => (
-          <li key={key} className="mb-2">
-            <strong className="mr-2">{key}:</strong>
-            <span>{JSON.stringify(value)}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <React.Fragment>
+      <dl className="p-4 rounded bg-slate-200 text-slate-800 text-xl">
+        <div className="flex py-1">
+          <dt className="w-40"><strong>Label:</strong></dt>
+          <dd>{deviceInfo.label}</dd>
+        </div>
+        <div className="flex py-1">
+          <dt className="w-40"><strong>ID:</strong></dt>
+          <dd>{deviceInfo.id}</dd>
+        </div>
+      </dl>
+      <article className="my-4 p-4 rounded bg-slate-200 text-slate-800">
+        <h2 className="my-4 text-2xl font-bold">MediaTrackSettings</h2>
+        <hr className="border border-slate-800 my-4" />
+        <dl className="text-xl">
+          {Object.entries(deviceInfo.constraints).map(([key, value]) => (
+            <div key={key} className="flex py-1">
+              <dt className="w-40 mb-2"><strong className="mr-2">{key}:</strong></dt>
+              <dd><span>{JSON.stringify(value)}</span></dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+    </React.Fragment>
   );
 }
