@@ -9,7 +9,7 @@ interface Props {
 interface DeviceInfo {
   label: string;
   id: string;
-  constraints: MediaTrackSettings;
+  settings: MediaTrackSettings;
 }
 
 export default function DeviceConstraints({ deviceId }: Props) {
@@ -21,13 +21,13 @@ export default function DeviceConstraints({ deviceId }: Props) {
       .then(stream => {
         // Get the video track from the stream
         const videoTrack = stream.getVideoTracks()[0];
-        // Get the constraints of the video track
-        const trackConstraints = videoTrack.getSettings();
+        // Get the settings of the video track
+        const trackSettings = videoTrack.getSettings();
         // Update the state with the device info
         setDeviceInfo({
           label: videoTrack.label,
           id: videoTrack.id,
-          constraints: trackConstraints
+          settings: trackSettings
         });
       })
       .catch(error => {
@@ -55,7 +55,7 @@ export default function DeviceConstraints({ deviceId }: Props) {
         <h2 className="my-4 text-2xl font-bold">MediaTrackSettings</h2>
         <hr className="border border-slate-800 my-4" />
         <dl className="text-xl">
-          {Object.entries(deviceInfo.constraints).map(([key, value]) => (
+          {Object.entries(deviceInfo.settings).map(([key, value]) => (
             <div key={key} className="flex py-1">
               <dt className="w-40 mb-2"><strong className="mr-2">{key}:</strong></dt>
               <dd><span>{JSON.stringify(value)}</span></dd>
